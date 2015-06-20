@@ -33,6 +33,12 @@ ifeq ($(TARGET_IS_64_BIT),true)
 TARGET_ARCH_ABI := arm64-v8a
 TARGET_LIB_DIR := lib64
 TARGET_LIB_ARM_DIR := arm64
+
+$(shell mkdir -p $(TARGET_OUT)/lib)
+$(shell cp $(LOCAL_PATH)/prebuilt/armeabi-v7a/libwebviewchromium.so $(TARGET_OUT)/lib/libwebviewchromium.so)
+$(shell mkdir -p $(TARGET_OUT_APPS)/webview/lib/arm)
+$(shell ln -sf ../../../../lib/libwebviewchromium.so $(TARGET_OUT_APPS)/webview/lib/arm/libwebviewchromium.so)
+
 else
 TARGET_ARCH_ABI := armeabi-v7a
 TARGET_LIB_DIR := lib
